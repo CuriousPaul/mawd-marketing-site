@@ -13,7 +13,7 @@ MAWD Challenge marketing assets and static landing page.
 
 ## Preview
 
-Open `mawd-landing.html` directly in a browser.
+Open `mawd-landing.html` directly in a browser, or use `index.html` as the GitHub Pages entry point.
 
 The landing page references local assets under `generated-designs-2026-06-23/`, so keep the folder structure intact.
 

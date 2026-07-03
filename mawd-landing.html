@@ -165,16 +165,28 @@
 
     .hero {
       position: relative;
-      min-height: calc(100vh - 72px);
-      padding: 72px 0 54px;
+      min-height: calc(100svh - 72px);
+      padding: clamp(54px, 7vw, 84px) 0 46px;
       overflow: hidden;
       border-bottom: 1px solid var(--line);
     }
 
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(118deg, transparent 0 42%, rgba(244,239,227,.075) 42% 42.35%, transparent 42.35% 100%),
+        linear-gradient(118deg, transparent 0 58%, rgba(59,209,169,.09) 58% 58.28%, transparent 58.28% 100%);
+      opacity: .8;
+    }
+
     .hero-grid {
+      position: relative;
       display: grid;
-      grid-template-columns: minmax(0, .95fr) minmax(480px, 1.05fr);
-      gap: 54px;
+      grid-template-columns: minmax(0, .92fr) minmax(500px, 1.08fr);
+      gap: clamp(32px, 5vw, 58px);
       align-items: center;
     }
 
@@ -209,6 +221,20 @@
       font-weight: 950;
     }
 
+    .hero-title-line {
+      display: block;
+      transform-origin: left center;
+      animation: title-lock .86s cubic-bezier(.17, .84, .22, 1) both;
+    }
+
+    .hero-title-line:nth-child(2) { animation-delay: .1s; }
+    .hero-title-line:nth-child(3) { animation-delay: .2s; }
+
+    .hero-title-accent {
+      color: var(--coral);
+      text-shadow: 4px 4px 0 rgba(75, 141, 247, .45);
+    }
+
     .hero-lead {
       max-width: 620px;
       margin: 0 0 34px;
@@ -226,11 +252,35 @@
     }
 
     .meta-card {
+      position: relative;
       min-height: 112px;
       padding: 18px;
       border: 1px solid var(--line);
       border-radius: 8px;
       background: rgba(21,25,34,.72);
+      overflow: hidden;
+    }
+
+    .meta-card::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 3px;
+      background: var(--coral);
+      transform: scaleX(.26);
+      transform-origin: left;
+      opacity: .78;
+      animation: meta-charge 4.8s ease-in-out infinite;
+    }
+
+    .meta-card:nth-child(2)::after {
+      background: var(--mint);
+      animation-delay: .24s;
+    }
+
+    .meta-card:nth-child(3)::after {
+      background: var(--blue);
+      animation-delay: .48s;
     }
 
     .meta-card b {
@@ -256,6 +306,21 @@
       background: linear-gradient(145deg, rgba(32,37,50,.96), rgba(17,20,27,.92));
       box-shadow: 0 34px 90px rgba(0,0,0,.42);
       animation: preview-float 7s ease-in-out infinite;
+      transform-style: preserve-3d;
+    }
+
+    .product-shell::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border-radius: 8px;
+      padding: 1px;
+      background: linear-gradient(120deg, rgba(245,102,72,.7), rgba(59,209,169,.12), rgba(75,141,247,.55), rgba(244,196,79,.18));
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: .68;
+      pointer-events: none;
     }
 
     .shell-bar {
@@ -270,6 +335,25 @@
       font-weight: 760;
     }
 
+    .shell-status {
+      margin-left: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--mint);
+      font-weight: 900;
+    }
+
+    .shell-status::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: currentColor;
+      box-shadow: 0 0 16px currentColor;
+      animation: live-dot 1.6s ease-in-out infinite;
+    }
+
     .dot { width: 10px; height: 10px; border-radius: 50%; }
     .dot.coral { background: var(--coral); }
     .dot.yellow { background: var(--yellow); }
@@ -277,17 +361,30 @@
 
     .preview-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 170px;
+      grid-template-columns: minmax(0, 1fr) 184px;
       gap: 16px;
       padding: 18px 0 0;
     }
 
     .poster {
+      position: relative;
       min-height: 450px;
       overflow: hidden;
       border: 1px solid rgba(14,17,22,.12);
       border-radius: 8px;
       background: var(--paper);
+    }
+
+    .poster::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(180deg, transparent 0 54%, rgba(14,17,22,.8) 100%),
+        repeating-linear-gradient(0deg, rgba(255,255,255,.15) 0 1px, transparent 1px 9px);
+      mix-blend-mode: multiply;
+      opacity: .48;
     }
 
     .poster img {
@@ -296,6 +393,103 @@
       object-fit: cover;
       object-position: center top;
       filter: saturate(.98) contrast(1.02);
+    }
+
+    .build-console {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 18px;
+      z-index: 2;
+      display: grid;
+      gap: 10px;
+      padding: 16px;
+      border: 1px solid rgba(244,239,227,.16);
+      border-radius: 8px;
+      background: rgba(14,17,22,.86);
+      color: var(--cream);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 18px 44px rgba(0,0,0,.32);
+    }
+
+    .console-line {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      min-width: 0;
+      color: rgba(244,239,227,.72);
+      font-size: 12px;
+      font-weight: 820;
+    }
+
+    .console-line b {
+      color: var(--cream);
+      font-size: 13px;
+    }
+
+    .signal-bars {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 7px;
+    }
+
+    .signal-bar {
+      height: 9px;
+      border-radius: 999px;
+      background: rgba(244,239,227,.1);
+      overflow: hidden;
+    }
+
+    .signal-bar span {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      transform-origin: left;
+      animation: signal-fill 3.8s cubic-bezier(.44, 0, .18, 1) infinite;
+    }
+
+    .signal-bar:nth-child(1) span { width: 86%; background: var(--coral); }
+    .signal-bar:nth-child(2) span { width: 66%; background: var(--mint); animation-delay: .18s; }
+    .signal-bar:nth-child(3) span { width: 74%; background: var(--blue); animation-delay: .36s; }
+
+    .floating-ticket {
+      position: absolute;
+      z-index: 3;
+      display: grid;
+      gap: 2px;
+      min-width: 146px;
+      padding: 12px 14px;
+      border: 1px solid rgba(244,239,227,.18);
+      border-radius: 8px;
+      background: rgba(21,25,34,.9);
+      box-shadow: 0 18px 42px rgba(0,0,0,.28);
+      backdrop-filter: blur(12px);
+      animation: ticket-drift 5.4s ease-in-out infinite;
+    }
+
+    .floating-ticket b {
+      color: var(--mint);
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    .floating-ticket span {
+      color: var(--cream);
+      font-size: 20px;
+      font-weight: 950;
+      line-height: 1.1;
+    }
+
+    .floating-ticket.one {
+      top: 82px;
+      right: -18px;
+    }
+
+    .floating-ticket.two {
+      left: -14px;
+      bottom: 122px;
+      animation-delay: .8s;
     }
 
     .motion-stack {
@@ -324,6 +518,8 @@
       color: var(--muted);
       font-size: 12px;
       font-weight: 820;
+      transform: translateX(0);
+      animation: step-cycle 4.8s ease-in-out infinite;
     }
 
     .motion-step.active {
@@ -331,6 +527,10 @@
       background: var(--coral);
       animation: pulse-card 2.4s ease-in-out infinite;
     }
+
+    .motion-step:nth-of-type(3) { animation-delay: .2s; }
+    .motion-step:nth-of-type(4) { animation-delay: .4s; }
+    .motion-step:nth-of-type(5) { animation-delay: .6s; }
 
     .motion-step::after {
       content: "";
@@ -568,6 +768,31 @@
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-10px); }
     }
+    @keyframes title-lock {
+      0% { opacity: 0; transform: translateY(22px) skewY(2deg); filter: blur(8px); }
+      100% { opacity: 1; transform: translateY(0) skewY(0); filter: blur(0); }
+    }
+    @keyframes meta-charge {
+      0%, 100% { transform: scaleX(.26); }
+      50% { transform: scaleX(.92); }
+    }
+    @keyframes live-dot {
+      0%, 100% { opacity: .48; transform: scale(.82); }
+      50% { opacity: 1; transform: scale(1); }
+    }
+    @keyframes signal-fill {
+      0% { transform: scaleX(.22); opacity: .62; }
+      46%, 72% { transform: scaleX(1); opacity: 1; }
+      100% { transform: scaleX(.44); opacity: .76; }
+    }
+    @keyframes ticket-drift {
+      0%, 100% { transform: translate3d(0, 0, 0) rotate(-1deg); }
+      50% { transform: translate3d(0, -10px, 0) rotate(1deg); }
+    }
+    @keyframes step-cycle {
+      0%, 100% { transform: translateX(0); color: var(--muted); }
+      44%, 56% { transform: translateX(4px); color: var(--cream); }
+    }
     @keyframes pulse-card {
       0%, 100% { filter: brightness(1); }
       50% { filter: brightness(1.14); }
@@ -596,6 +821,8 @@
       .hero-grid, .section-head, .split, .final-box { grid-template-columns: 1fr; }
       .hero-grid { gap: 34px; }
       .preview-grid { grid-template-columns: 1fr; }
+      .floating-ticket.one { right: 12px; top: 76px; }
+      .floating-ticket.two { left: 12px; bottom: 132px; }
       .motion-stack { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .motion-stack h2 { grid-column: 1 / -1; }
       .card-grid, .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -606,13 +833,24 @@
       .nav-inner { height: 64px; }
       .nav .btn { min-height: 42px; padding: 0 14px; font-size: 13px; }
       .brand small { display: none; }
-      .hero { min-height: 0; padding: 54px 0 42px; }
-      h1 { font-size: clamp(48px, 14vw, 72px); }
-      .hero-lead { font-size: 17px; }
+      .hero { min-height: 0; padding: 48px 0 42px; }
+      h1 { margin: 22px 0 18px; font-size: clamp(42px, 12.5vw, 58px); }
+      .hero-lead { margin-bottom: 26px; font-size: 16px; line-height: 1.55; }
       .btn-row, .hero-meta, .card-grid, .steps, .value-grid, .motion-stack { grid-template-columns: 1fr; }
       .btn { width: 100%; }
-      .hero-meta { display: grid; }
-      .poster { min-height: 300px; }
+      .hero-meta { display: none; }
+      .shell-bar { font-size: 11px; }
+      .shell-status { display: none; }
+      .poster { min-height: 360px; }
+      .build-console { left: 12px; right: 12px; bottom: 12px; padding: 13px; }
+      .floating-ticket {
+        position: relative;
+        inset: auto;
+        min-width: 0;
+        margin-top: 10px;
+        animation: none;
+      }
+      .floating-ticket.two { margin-top: 0; }
       section { padding: 68px 0; }
       .section-head { gap: 18px; margin-bottom: 28px; }
       h2 { font-size: clamp(32px, 10vw, 46px); }
@@ -644,7 +882,11 @@
       <div class="wrap hero-grid">
         <div class="reveal">
           <span class="eyebrow">AI practical building survival</span>
-          <h1 id="hero-title" class="display">Build it. Prove it. Earn the signal.</h1>
+          <h1 id="hero-title" class="display">
+            <span class="hero-title-line">Build it.</span>
+            <span class="hero-title-line hero-title-accent">Prove it.</span>
+            <span class="hero-title-line">Earn the signal.</span>
+          </h1>
           <p class="hero-lead">MAWD Challenge는 아이디어를 말로 설명하는 행사가 아니라, AI로 실제 산출물을 만들고 가상 투자로 검증받는 실행형 빌드 챌린지입니다.</p>
           <div class="btn-row" role="group" aria-label="주요 행동">
             <a class="btn primary" href="#apply">참가 신청 준비하기</a>
@@ -663,10 +905,22 @@
             <span class="dot yellow"></span>
             <span class="dot mint"></span>
             mawd-challenge.site / launch flow
+            <span class="shell-status">LIVE BUILD</span>
           </div>
           <div class="preview-grid">
             <figure class="poster">
               <img src="generated-designs-2026-06-23/mawd-web-design-ver-04-final-direction.png" alt="MAWD Challenge visual direction preview">
+              <figcaption class="build-console">
+                <div class="console-line"><b>Round 01</b><span>PRD + Agent draft</span></div>
+                <div class="signal-bars" aria-hidden="true">
+                  <div class="signal-bar"><span></span></div>
+                  <div class="signal-bar"><span></span></div>
+                  <div class="signal-bar"><span></span></div>
+                </div>
+                <div class="console-line"><span>Virtual investment signal</span><b>86%</b></div>
+              </figcaption>
+              <div class="floating-ticket one" aria-hidden="true"><b>Builder</b><span>MVP ready</span></div>
+              <div class="floating-ticket two" aria-hidden="true"><b>Signal</b><span>+12 votes</span></div>
             </figure>
             <aside class="motion-stack" aria-label="모션 스택">
               <h2>Motion stack</h2>

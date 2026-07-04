@@ -7,25 +7,16 @@
   <meta name="description" content="AI로 만들고, 투자로 검증받고, 상금과 기회를 가져가는 AI 빌드 챌린지">
   <meta property="og:title" content="MAWD Challenge">
   <meta property="og:description" content="아이디어를 말로 끝내지 않고, PRD와 MVP 결과물로 증명하는 AI 빌드 챌린지">
-  <meta property="og:image" content="./generated-designs-2026-06-23/mawd-web-design-ver-04-final-direction.png">
+  <meta property="og:image" content="./assets/figma/proto-60-8/hero-1440x810.png">
   <style>
-    @import url("https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@500;700;900&family=Press+Start+2P&display=swap");
-
     :root {
       color-scheme: dark;
+      --frame-w: 1440;
+      --frame-h: 3683;
+      --green: #7cff00;
+      --purple: #9b4cff;
+      --paper: #f4f2ec;
       --black: #050505;
-      --panel: #0c0d0b;
-      --panel-2: #12140f;
-      --paper: #f8f8f2;
-      --muted: #b8baae;
-      --dim: #73776d;
-      --green: #98ff00;
-      --purple: #a45cff;
-      --purple-2: #4b167a;
-      --line: rgba(248, 248, 242, .16);
-      --green-line: rgba(152, 255, 0, .72);
-      --purple-line: rgba(164, 92, 255, .64);
-      --max: 1180px;
     }
 
     * {
@@ -34,37 +25,37 @@
 
     html {
       scroll-behavior: smooth;
+      background: var(--black);
     }
 
     body {
       margin: 0;
+      width: 100%;
+      min-width: 320px;
       background:
-        linear-gradient(rgba(248, 248, 242, .055) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(248, 248, 242, .055) 1px, transparent 1px),
-        radial-gradient(circle at 22% 18%, rgba(78, 25, 128, .42), transparent 34%),
-        var(--black);
-      background-size: 34px 34px, 34px 34px, auto, auto;
+        radial-gradient(circle at 18% 8%, rgba(116, 32, 194, .28), transparent 32%),
+        #050505;
       color: var(--paper);
-      font-family: "Noto Sans KR", sans-serif;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       letter-spacing: 0;
       overflow-x: hidden;
     }
 
-    body::before {
+    body::after {
       content: "";
       position: fixed;
       inset: 0;
-      z-index: 20;
+      z-index: 10;
       pointer-events: none;
       background: repeating-linear-gradient(
         to bottom,
-        rgba(255, 255, 255, .035) 0,
-        rgba(255, 255, 255, .035) 1px,
+        rgba(255, 255, 255, .045) 0,
+        rgba(255, 255, 255, .045) 1px,
         transparent 1px,
         transparent 4px
       );
       mix-blend-mode: overlay;
-      opacity: .5;
+      opacity: .34;
     }
 
     a {
@@ -72,494 +63,215 @@
       text-decoration: none;
     }
 
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      border-bottom: 1px solid var(--line);
-      background: rgba(5, 5, 5, .82);
-      backdrop-filter: blur(16px);
-    }
-
-    .nav {
-      width: min(var(--max), calc(100% - 48px));
-      height: 70px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-    }
-
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      min-width: 172px;
-      font-family: "Press Start 2P", monospace;
-      font-size: 15px;
-      color: var(--green);
-      text-shadow: 0 0 16px rgba(152, 255, 0, .5);
-      transform: skew(-8deg);
-    }
-
-    .brand small {
-      display: block;
-      margin-top: 4px;
-      color: var(--paper);
-      font-size: 7px;
-      letter-spacing: .36em;
-      transform: skew(8deg);
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 38px;
-      color: #dfdfd8;
-      font-size: 14px;
-      font-weight: 700;
-    }
-
-    .nav-actions {
-      display: flex;
-      gap: 12px;
-    }
-
-    .btn {
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 48px;
-      padding: 0 28px;
-      border: 1px solid var(--paper);
-      border-radius: 2px;
-      color: var(--paper);
-      font-weight: 900;
-      overflow: hidden;
-      transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
-    }
-
-    .btn::after {
-      content: "›";
-      margin-left: 22px;
-      font-size: 23px;
-      line-height: 0;
-      transition: transform .18s ease;
-    }
-
-    .btn:hover {
-      transform: translateY(-3px);
-      border-color: var(--green);
-      box-shadow: 0 0 22px rgba(152, 255, 0, .26);
-    }
-
-    .btn:hover::after {
-      transform: translateX(5px);
-    }
-
-    .btn-primary {
-      border-color: var(--green);
+    .skip-link {
+      position: fixed;
+      left: 16px;
+      top: 16px;
+      z-index: 30;
+      padding: 10px 14px;
       background: var(--green);
-      color: #050505;
-      box-shadow: 7px 7px 0 rgba(152, 255, 0, .2);
+      color: var(--black);
+      font-weight: 900;
+      transform: translateY(-160%);
     }
 
-    .btn-secondary {
-      border-color: var(--purple);
-      background: rgba(47, 15, 78, .68);
-      box-shadow: 7px 7px 0 rgba(164, 92, 255, .22);
+    .skip-link:focus {
+      transform: translateY(0);
     }
 
-    .hero {
+    .desktop-frame {
       position: relative;
-      min-height: 830px;
-      border-bottom: 1px solid var(--line);
+      width: min(100vw, 1440px);
+      height: min(3683px, calc(100vw * var(--frame-h) / var(--frame-w)));
+      min-height: 100vh;
+      margin: 0 auto;
+      background: #050505;
+      box-shadow: 0 0 80px rgba(0, 0, 0, .72);
+      animation: frameBoot .7s ease-out both;
       overflow: hidden;
     }
 
-    .hero::before {
+    .desktop-frame::before {
       content: "";
       position: absolute;
       inset: 0;
+      z-index: 1;
+      pointer-events: none;
       background:
-        linear-gradient(180deg, rgba(5, 5, 5, .1) 0%, rgba(5, 5, 5, .08) 55%, #050505 100%),
-        url("./generated-designs-2026-06-23/mawd-web-design-ver-04-final-direction.png") center top / cover no-repeat;
-      filter: saturate(1.1) contrast(1.08);
-      animation: posterIn .8s ease-out both;
+        linear-gradient(90deg, rgba(124, 255, 0, .06), transparent 18%, transparent 82%, rgba(155, 76, 255, .08)),
+        repeating-linear-gradient(90deg, rgba(255, 255, 255, .03) 0 1px, transparent 1px 64px);
+      opacity: .28;
+      mix-blend-mode: screen;
     }
 
-    .hero::after {
-      content: "";
+    .figma-layer {
       position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(5, 5, 5, .06), rgba(5, 5, 5, .16) 74%, #050505 100%);
+      display: block;
+      max-width: none;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .body-bg {
+      z-index: 0;
+      inset: 0 auto auto 0;
+      width: 100%;
+      height: 100%;
+      object-fit: fill;
+    }
+
+    .hero-bg {
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: calc(810 / var(--frame-w) * 100vw);
+      max-height: 810px;
+      object-fit: cover;
+    }
+
+    .left-sticker {
+      z-index: 2;
+      left: calc(69 / var(--frame-w) * 100%);
+      top: calc(201 / var(--frame-h) * 100%);
+      width: calc(218.94 / var(--frame-w) * 100%);
+      height: calc(341 / var(--frame-h) * 100%);
+      object-fit: cover;
+    }
+
+    .anchor {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
       pointer-events: none;
     }
 
-    .hero-inner {
-      position: relative;
-      z-index: 1;
-      width: min(var(--max), calc(100% - 48px));
-      min-height: 760px;
-      margin: 0 auto;
-      display: grid;
-      align-content: end;
-      padding: 88px 0 54px;
+    #top {
+      top: 0;
     }
 
-    .mobile-hero-copy {
-      display: none;
+    #intro {
+      top: 21.9%;
     }
 
-    .ticker-row {
-      display: none;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 20px;
-      align-items: end;
-      animation: rise .7s .2s ease-out both;
+    #program {
+      top: 43.2%;
     }
 
-    .program-flow {
-      display: grid;
-      grid-template-columns: repeat(6, minmax(0, 1fr));
-      gap: 12px;
-      align-items: stretch;
+    #benefits {
+      top: 64.1%;
     }
 
-    .flow-card {
-      min-height: 128px;
-      padding: 18px 14px;
-      border: 1px solid rgba(248, 248, 242, .42);
-      border-radius: 4px;
-      background: rgba(7, 7, 7, .76);
-      display: grid;
-      place-items: center;
-      text-align: center;
-      box-shadow: 7px 7px 0 rgba(164, 92, 255, .18);
-      animation: cardBoot .62s ease both;
-      animation-delay: calc(var(--i) * 70ms);
+    #apply {
+      top: 83.8%;
     }
 
-    .flow-card.is-final {
-      border-color: var(--green);
-      box-shadow: 0 0 26px rgba(152, 255, 0, .22), 7px 7px 0 rgba(152, 255, 0, .16);
-    }
-
-    .flow-no {
+    .hotspot {
+      position: absolute;
+      z-index: 4;
       display: block;
-      margin-bottom: 12px;
-      color: var(--purple);
-      font-family: "Press Start 2P", monospace;
-      font-size: 12px;
+      border: 0;
+      border-radius: 2px;
+      color: transparent;
+      overflow: hidden;
+      outline: 0;
     }
 
-    .flow-card.is-final .flow-no {
-      color: var(--green);
+    .hotspot:focus-visible {
+      outline: 3px solid var(--green);
+      outline-offset: 4px;
+      background: rgba(124, 255, 0, .1);
     }
 
-    .flow-label {
-      font-size: 15px;
-      font-weight: 900;
+    .hotspot:hover {
+      background: rgba(124, 255, 0, .1);
+      box-shadow: 0 0 32px rgba(124, 255, 0, .34);
     }
 
-    .benefit-mini {
-      display: grid;
-      gap: 12px;
+    .nav-home { left: 2.6%; top: .35%; width: 10.5%; height: 1.35%; }
+    .nav-intro { left: 31.6%; top: .35%; width: 6.5%; height: 1.15%; }
+    .nav-program { left: 43.5%; top: .35%; width: 6.4%; height: 1.15%; }
+    .nav-apply { left: 54.6%; top: .35%; width: 6.8%; height: 1.15%; }
+    .nav-benefits { left: 65.8%; top: .35%; width: 4.8%; height: 1.15%; }
+    .nav-faq { left: 75.6%; top: .35%; width: 4%; height: 1.15%; }
+    .nav-support { left: 85.2%; top: .35%; width: 6.5%; height: 1.15%; }
+    .nav-cta { left: 82.9%; top: .45%; width: 8.7%; height: 1.1%; }
+    .nav-sponsor { left: 92.6%; top: .45%; width: 6.8%; height: 1.1%; }
+
+    .hero-cta { left: 34.2%; top: 12.8%; width: 16.1%; height: 1.55%; }
+    .hero-sponsor { left: 51.3%; top: 12.8%; width: 15%; height: 1.55%; }
+    .apply-cta { left: 67.4%; top: 91.45%; width: 8.4%; height: 1.55%; }
+    .apply-sponsor { left: 77.2%; top: 91.45%; width: 9.5%; height: 1.55%; }
+
+    .apply-cta,
+    .hero-cta,
+    .nav-cta {
+      animation: ctaPulse 1.9s ease-in-out infinite;
     }
 
-    .mini-panel {
-      min-height: 128px;
-      padding: 20px 22px;
-      border: 1px solid var(--green-line);
-      border-radius: 6px;
-      background: rgba(8, 10, 7, .82);
-      box-shadow: inset 0 0 22px rgba(152, 255, 0, .08);
+    .apply-cta:hover,
+    .hero-cta:hover,
+    .nav-cta:hover {
+      transform: translate(-2px, -2px);
+      background: rgba(124, 255, 0, .18);
+      box-shadow: 8px 8px 0 rgba(155, 76, 255, .46), 0 0 28px rgba(124, 255, 0, .5);
     }
 
-    .mini-panel.sponsor {
-      border-color: var(--purple-line);
-      box-shadow: inset 0 0 22px rgba(164, 92, 255, .08);
+    .section-hit {
+      position: absolute;
+      left: 8.9%;
+      width: 82.2%;
+      z-index: 2;
+      border: 1px solid transparent;
+      pointer-events: none;
     }
 
-    .mini-title {
-      margin: 0 0 10px;
-      color: var(--green);
-      font-size: 16px;
-      font-weight: 900;
+    .section-hit.is-visible {
+      animation: sectionWake .8s ease both;
     }
 
-    .sponsor .mini-title {
-      color: #c78cff;
-    }
+    .hit-intro { top: 24.6%; height: 17%; }
+    .hit-program { top: 45.6%; height: 16.4%; }
+    .hit-benefits { top: 66.6%; height: 13.7%; }
+    .hit-apply { top: 84.9%; height: 11.8%; }
 
-    .mini-list {
-      margin: 0;
+    .semantic-copy {
+      position: absolute;
+      width: 1px;
+      height: 1px;
       padding: 0;
-      list-style: none;
-      color: #e6e6df;
-      font-size: 13px;
-      line-height: 1.9;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
     }
 
-    .section {
-      position: relative;
-      border-bottom: 1px solid var(--line);
-      padding: 104px 0;
-    }
-
-    .section-inner {
-      width: min(var(--max), calc(100% - 48px));
-      margin: 0 auto;
-    }
-
-    .eyebrow {
-      margin: 0 0 18px;
-      color: var(--green);
-      font-family: "Press Start 2P", monospace;
-      font-size: 13px;
-      line-height: 1.4;
-    }
-
-    h1,
-    h2,
-    h3,
-    p {
-      margin-top: 0;
-    }
-
-    h1,
-    h2 {
-      font-family: "Black Han Sans", "Noto Sans KR", sans-serif;
-      font-weight: 400;
-      letter-spacing: 0;
-    }
-
-    h2 {
-      max-width: 760px;
-      margin-bottom: 24px;
-      font-size: 64px;
-      line-height: 1.05;
-    }
-
-    .lead {
-      max-width: 910px;
-      color: #d7d8d0;
-      font-size: 22px;
-      font-weight: 700;
-      line-height: 1.7;
-    }
-
-    .green {
-      color: var(--green);
-    }
-
-    .step-grid {
-      margin-top: 70px;
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 28px;
-    }
-
-    .step-card,
-    .reward-card {
-      border: 1px solid var(--line);
-      border-radius: 6px;
-      background:
-        linear-gradient(135deg, rgba(152, 255, 0, .055), transparent 38%),
-        rgba(13, 15, 12, .86);
-      padding: 30px;
-      min-height: 210px;
-      transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
-    }
-
-    .step-card:hover,
-    .reward-card:hover {
-      transform: translateY(-6px);
-      border-color: var(--green);
-      box-shadow: 0 18px 60px rgba(0, 0, 0, .36), 0 0 26px rgba(152, 255, 0, .14);
-    }
-
-    .card-no {
-      display: inline-grid;
-      place-items: center;
-      width: 42px;
-      height: 42px;
-      margin-bottom: 28px;
-      border: 1px solid var(--green);
-      color: var(--green);
-      font-family: "Press Start 2P", monospace;
-      font-size: 11px;
-    }
-
-    .step-card h3,
-    .reward-card h3 {
-      margin-bottom: 16px;
-      font-size: 26px;
-      line-height: 1.2;
-    }
-
-    .step-card p,
-    .reward-card li {
-      color: var(--muted);
-      font-size: 16px;
-      line-height: 1.8;
-    }
-
-    .quest {
-      background:
-        linear-gradient(90deg, rgba(5, 5, 5, .35), rgba(75, 22, 122, .24), rgba(5, 5, 5, .35)),
-        rgba(5, 5, 5, .88);
-    }
-
-    .quest-layout {
-      display: grid;
-      grid-template-columns: .9fr 1.1fr;
-      gap: 74px;
-      align-items: center;
-    }
-
-    .timeline {
-      display: grid;
-      gap: 18px;
-    }
-
-    .timeline-item {
-      min-height: 86px;
-      display: grid;
-      grid-template-columns: 120px 1fr;
-      align-items: center;
-      gap: 30px;
-      border: 1px solid var(--line);
-      border-radius: 4px;
-      padding: 20px 26px;
-      background: rgba(7, 7, 7, .72);
-    }
-
-    .timeline-kicker {
-      color: var(--purple);
-      font-family: "Press Start 2P", monospace;
-      font-size: 13px;
-    }
-
-    .timeline-item strong {
-      display: block;
-      margin-bottom: 7px;
-      font-size: 23px;
-    }
-
-    .timeline-item span {
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.7;
-    }
-
-    .reward-grid {
-      margin-top: 62px;
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 30px;
-    }
-
-    .reward-card {
-      min-height: 280px;
-      border-color: var(--green-line);
-    }
-
-    .reward-card.sponsor {
-      border-color: var(--purple-line);
-    }
-
-    .reward-card ul {
-      margin: 0;
-      padding-left: 0;
-      list-style: none;
-    }
-
-    .reward-card li::before {
-      content: "▣";
-      margin-right: 10px;
-      color: var(--green);
-      font-size: 12px;
-    }
-
-    .sponsor li::before {
-      color: #c78cff;
-    }
-
-    .cta {
-      background: var(--paper);
-      color: #090909;
-    }
-
-    .cta .section-inner {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 48px;
-      align-items: center;
-    }
-
-    .cta h2 {
-      margin-bottom: 16px;
-      color: #090909;
-    }
-
-    .cta p {
-      max-width: 720px;
-      margin: 0;
-      color: #3c3d38;
-      font-size: 18px;
-      font-weight: 700;
-      line-height: 1.8;
-    }
-
-    .cta .btn-primary {
-      min-width: 190px;
-      border-color: #090909;
-      box-shadow: 7px 7px 0 rgba(9, 9, 9, .16);
-    }
-
-    .site-footer {
-      padding: 38px 0;
-      background: #050505;
-      color: var(--dim);
-    }
-
-    .footer-inner {
-      width: min(var(--max), calc(100% - 48px));
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      gap: 24px;
-      font-size: 13px;
-    }
-
-    .pixel {
-      font-family: "Press Start 2P", monospace;
-      color: var(--green);
-      font-size: 13px;
-    }
-
-    .reveal {
-      animation: rise .7s ease both;
-    }
-
-    @keyframes posterIn {
+    @keyframes frameBoot {
       from {
         opacity: 0;
-        transform: scale(1.035);
+        filter: saturate(.9) contrast(.95);
       }
       to {
         opacity: 1;
-        transform: scale(1);
+        filter: saturate(1) contrast(1);
       }
     }
 
-    @keyframes rise {
+    @keyframes ctaPulse {
+      0%, 100% {
+        box-shadow: 0 0 0 rgba(124, 255, 0, 0);
+      }
+      50% {
+        box-shadow: 0 0 24px rgba(124, 255, 0, .34);
+      }
+    }
+
+    @keyframes sectionWake {
       from {
-        opacity: 0;
-        transform: translateY(24px);
+        opacity: .6;
+        transform: translateY(18px);
       }
       to {
         opacity: 1;
@@ -567,281 +279,22 @@
       }
     }
 
-    @keyframes cardBoot {
-      from {
-        opacity: 0;
-        transform: translateY(16px) scale(.98);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
+    @media (min-width: 1441px) {
+      .desktop-frame {
+        width: 1440px;
+        height: 3683px;
       }
     }
 
-    @media (max-width: 1020px) {
-      .nav {
-        width: min(100% - 32px, var(--max));
+    @media (max-width: 900px) {
+      body {
+        overflow-x: auto;
       }
 
-      .nav-links {
-        display: none;
-      }
-
-      .hero {
-        min-height: auto;
-      }
-
-      .hero::before {
-        opacity: 1;
-        background:
-          linear-gradient(rgba(248, 248, 242, .055) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(248, 248, 242, .055) 1px, transparent 1px),
-          radial-gradient(circle at 0 16%, rgba(75, 22, 122, .58), transparent 46%),
-          #050505;
-        background-size: 34px 34px, 34px 34px, auto, auto;
-        filter: none;
-      }
-
-      .hero::after {
-        background: linear-gradient(180deg, rgba(5, 5, 5, .02), #050505 92%);
-      }
-
-      .hero-inner {
-        width: min(100% - 32px, 680px);
-        min-height: 700px;
-        align-content: center;
-        padding: 58px 0 42px;
-      }
-
-      .mobile-hero-copy {
-        display: block;
-        text-align: center;
-        animation: rise .7s ease both;
-      }
-
-      .mobile-logo {
-        margin: 0 auto 22px;
-        font-family: "Black Han Sans", "Noto Sans KR", sans-serif;
-        font-size: 72px;
-        line-height: .82;
-        color: var(--green);
-        text-shadow: 0 0 26px rgba(152, 255, 0, .55);
-        transform: skew(-9deg);
-      }
-
-      .mobile-logo span {
-        display: block;
-        margin-top: 8px;
-        color: var(--paper);
-        font-family: "Press Start 2P", monospace;
-        font-size: 18px;
-        letter-spacing: .18em;
-        transform: skew(9deg);
-      }
-
-      .mobile-status {
-        display: inline-grid;
-        grid-template-columns: repeat(2, 72px);
-        gap: 10px;
-        margin-bottom: 28px;
-      }
-
-      .status-box {
-        padding: 9px 8px 12px;
-        border: 2px solid var(--paper);
-        background: rgba(10, 10, 10, .72);
-        font-family: "Press Start 2P", monospace;
-        font-size: 8px;
-        color: #c78cff;
-      }
-
-      .status-box b {
-        display: block;
-        margin-top: 8px;
-        color: var(--green);
-        font-size: 14px;
-      }
-
-      .mobile-hero-copy h1 {
-        max-width: 500px;
-        margin: 0 auto 18px;
-        font-family: "Noto Sans KR", sans-serif;
-        font-size: 31px;
-        font-weight: 900;
-        line-height: 1.18;
-      }
-
-      .mobile-hero-copy p {
-        max-width: 560px;
-        margin: 0 auto 30px;
-        color: #d8d8cf;
-        font-size: 16px;
-        font-weight: 700;
-        line-height: 1.75;
-      }
-
-      .mobile-actions {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 14px;
-        margin-bottom: 38px;
-      }
-
-      .ticker-row {
-        grid-template-columns: 1fr;
-      }
-
-      .program-flow {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-
-      .benefit-mini {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      h2 {
-        font-size: 46px;
-      }
-
-      .lead {
-        font-size: 18px;
-      }
-
-      .step-grid,
-      .quest-layout,
-      .reward-grid,
-      .cta .section-inner {
-        grid-template-columns: 1fr;
-      }
-
-      .quest-layout {
-        gap: 42px;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .site-header {
-        position: relative;
-      }
-
-      .nav {
-        height: 62px;
-      }
-
-      .brand {
-        min-width: auto;
-        font-size: 13px;
-      }
-
-      .brand small {
-        display: none;
-      }
-
-      .nav-actions .btn-secondary {
-        display: none;
-      }
-
-      .nav-actions .btn-primary {
-        min-height: 40px;
-        padding: 0 16px;
-        font-size: 13px;
-        box-shadow: 5px 5px 0 rgba(152, 255, 0, .18);
-      }
-
-      .hero-inner {
-        width: min(100% - 28px, 390px);
-        min-height: 710px;
-        padding-top: 38px;
-      }
-
-      .mobile-logo {
-        font-size: 66px;
-      }
-
-      .mobile-hero-copy h1 {
-        font-size: 25px;
-      }
-
-      .mobile-hero-copy p {
-        font-size: 14px;
-      }
-
-      .mobile-actions {
-        grid-template-columns: 1fr;
-      }
-
-      .mobile-actions .btn {
-        min-height: 52px;
-      }
-
-      .program-flow {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 10px;
-      }
-
-      .flow-card {
-        min-height: 86px;
-        padding: 12px 8px;
-        box-shadow: 4px 4px 0 rgba(164, 92, 255, .18);
-      }
-
-      .flow-no {
-        margin-bottom: 8px;
-        font-size: 9px;
-      }
-
-      .flow-label {
-        font-size: 12px;
-      }
-
-      .benefit-mini {
-        grid-template-columns: 1fr;
-      }
-
-      .section {
-        padding: 70px 0;
-      }
-
-      .section-inner {
-        width: min(100% - 28px, 390px);
-      }
-
-      .eyebrow {
-        font-size: 10px;
-      }
-
-      h2 {
-        font-size: 38px;
-      }
-
-      .lead {
-        font-size: 16px;
-      }
-
-      .step-grid {
-        margin-top: 42px;
-        gap: 16px;
-      }
-
-      .step-card,
-      .reward-card {
-        padding: 24px;
-        min-height: auto;
-      }
-
-      .timeline-item {
-        grid-template-columns: 1fr;
-        gap: 12px;
-        padding: 18px;
-      }
-
-      .timeline-kicker {
-        font-size: 11px;
-      }
-
-      .footer-inner {
-        width: min(100% - 28px, 390px);
-        flex-direction: column;
+      .desktop-frame {
+        width: 1440px;
+        height: 3683px;
+        margin: 0;
       }
     }
 
@@ -858,173 +311,69 @@
   </style>
 </head>
 <body>
-  <header class="site-header">
-    <nav class="nav" aria-label="주요 메뉴">
-      <a class="brand" href="#" aria-label="MAWD Challenge home">
-        MAWD
-        <small>Challenge</small>
-      </a>
-      <div class="nav-links" aria-hidden="false">
-        <a href="#intro">챌린지 소개</a>
-        <a href="#program">프로그램</a>
-        <a href="#benefits">혜택</a>
-        <a href="#apply">참가 안내</a>
-      </div>
-      <div class="nav-actions">
-        <a class="btn btn-primary" href="#apply">참가 신청</a>
-        <a class="btn btn-secondary" href="#benefits">스폰서 문의</a>
-      </div>
-    </nav>
-  </header>
+  <a class="skip-link" href="#intro">본문으로 이동</a>
 
-  <main>
-    <section class="hero" aria-label="MAWD Challenge hero">
-      <div class="hero-inner">
-        <div class="mobile-hero-copy">
-          <div class="mobile-logo">MAWD<span>CHALLENGE</span></div>
-          <div class="mobile-status" aria-label="stage status">
-            <div class="status-box">STAGE<b>04</b></div>
-            <div class="status-box">LEVEL<b>UP</b></div>
-          </div>
-          <h1>AI로 만들고, 투자로 검증받고, 상금과 기회를 가져가라</h1>
-          <p>자기 에이전트와 업종별 서비스를 만들어 성과를 증명하는 AI 빌드 챌린지. 아이디어를 말로 끝내지 않고, 결과물과 MVP로 인정받습니다.</p>
-          <div class="mobile-actions">
-            <a class="btn btn-primary" href="#apply">참가 신청</a>
-            <a class="btn btn-secondary" href="#benefits">스폰서 문의</a>
-          </div>
-        </div>
+  <main class="desktop-frame" aria-label="MAWD Challenge desktop landing page">
+    <img class="figma-layer body-bg" src="./assets/figma/proto-60-8/body-bg.png" alt="">
+    <img class="figma-layer hero-bg" src="./assets/figma/proto-60-8/hero-1440x810.png" alt="">
+    <img class="figma-layer left-sticker" src="./assets/figma/proto-60-8/left-sticker.png" alt="">
 
-        <div class="ticker-row">
-          <div class="program-flow" aria-label="Program flow">
-            <div class="flow-card" style="--i:1"><span class="flow-no">01</span><span class="flow-label">모집</span></div>
-            <div class="flow-card" style="--i:2"><span class="flow-no">02</span><span class="flow-label">오리엔테이션</span></div>
-            <div class="flow-card" style="--i:3"><span class="flow-no">03</span><span class="flow-label">1라운드</span></div>
-            <div class="flow-card" style="--i:4"><span class="flow-no">04</span><span class="flow-label">라이크 심사</span></div>
-            <div class="flow-card" style="--i:5"><span class="flow-no">05</span><span class="flow-label">2라운드</span></div>
-            <div class="flow-card is-final" style="--i:6"><span class="flow-no">06</span><span class="flow-label">시상</span></div>
-          </div>
-          <div class="benefit-mini">
-            <div class="mini-panel">
-              <p class="mini-title">참가자 혜택</p>
-              <ul class="mini-list">
-                <li>총 상금 및 투자 기회</li>
-                <li>멘토링 및 전문가 코칭</li>
-                <li>클라우드 크레딧 지원</li>
-              </ul>
-            </div>
-          </div>
-          <div class="benefit-mini">
-            <div class="mini-panel sponsor">
-              <p class="mini-title">스폰서 혜택</p>
-              <ul class="mini-list">
-                <li>브랜드 노출과 인지도 강화</li>
-                <li>우수팀과 비즈니스 기회</li>
-                <li>AI 기술 트렌드 선제 점검</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <span class="anchor" id="top"></span>
+    <span class="anchor" id="intro"></span>
+    <span class="anchor" id="program"></span>
+    <span class="anchor" id="benefits"></span>
+    <span class="anchor" id="apply"></span>
 
-    <section class="section" id="intro">
-      <div class="section-inner reveal">
-        <p class="eyebrow">BUILD · PROVE · EARN</p>
-        <h2>창업 교육처럼 듣고 끝나는 행사가 아니라, 결과물이 남는 빌드 게임입니다</h2>
-        <p class="lead">MAWD는 참가자가 AI 도구로 PRD와 MVP를 만들고, 심사위원과 기업이 그 결과물에 가상머니로 투자하는 방식입니다.</p>
+    <a class="hotspot nav-home" href="#top">MAWD Challenge home</a>
+    <a class="hotspot nav-intro" href="#intro">챌린지 소개</a>
+    <a class="hotspot nav-program" href="#program">프로그램</a>
+    <a class="hotspot nav-apply" href="#apply">참가 안내</a>
+    <a class="hotspot nav-benefits" href="#benefits">혜택</a>
+    <a class="hotspot nav-faq" href="#benefits">FAQ</a>
+    <a class="hotspot nav-support" href="#apply">지난 챌린지</a>
+    <a class="hotspot nav-cta" href="#apply">참가 신청</a>
+    <a class="hotspot nav-sponsor" href="mailto:hello@mfitlab.com?subject=MAWD%20Challenge%20스폰서%20문의">스폰서 문의</a>
+    <a class="hotspot hero-cta" href="#apply">참가 신청</a>
+    <a class="hotspot hero-sponsor" href="mailto:hello@mfitlab.com?subject=MAWD%20Challenge%20스폰서%20문의">스폰서 문의</a>
+    <a class="hotspot apply-cta" href="mailto:hello@mfitlab.com?subject=MAWD%20Challenge%20참가%20신청">참가 신청</a>
+    <a class="hotspot apply-sponsor" href="mailto:hello@mfitlab.com?subject=MAWD%20Challenge%20스폰서%20문의">스폰서 문의</a>
 
-        <div class="step-grid">
-          <article class="step-card">
-            <span class="card-no">01</span>
-            <h3>아이디어를 PRD로</h3>
-            <p>문제, 고객, 솔루션, 실행 계획을 문서화해 팀의 방향을 선명하게 만듭니다.</p>
-          </article>
-          <article class="step-card">
-            <span class="card-no">02</span>
-            <h3>AI로 실제 MVP 제작</h3>
-            <p>자기 에이전트와 서비스 결과물을 만들고 배포 가능한 링크로 등록합니다.</p>
-          </article>
-          <article class="step-card">
-            <span class="card-no">03</span>
-            <h3>투자 게임으로 검증</h3>
-            <p>심사위원과 기업이 가능성을 보고 투자합니다. 발표보다 결과가 중요합니다.</p>
-          </article>
-        </div>
-      </div>
-    </section>
+    <div class="section-hit hit-intro" data-reveal></div>
+    <div class="section-hit hit-program" data-reveal></div>
+    <div class="section-hit hit-benefits" data-reveal></div>
+    <div class="section-hit hit-apply" data-reveal></div>
 
-    <section class="section quest" id="program">
-      <div class="section-inner quest-layout">
-        <div>
-          <p class="eyebrow">PROGRAM QUEST</p>
-          <h2>두 번의 라운드로 아이디어를 서비스에 가깝게 밀어붙입니다</h2>
-          <p class="lead">처음부터 완벽한 창업팀일 필요는 없습니다. 아이디어를 문서로 만들고, 링크로 등록하고, MVP로 검증하는 라운드형 서바이벌입니다.</p>
-        </div>
-
-        <div class="timeline" aria-label="program timeline">
-          <div class="timeline-item">
-            <span class="timeline-kicker">ROUND 01</span>
-            <div><strong>툴 세팅 + PRD 제작</strong><span>비대면으로 자기 에이전트 세팅, 문제정의, 실행계획을 완성합니다.</span></div>
-          </div>
-          <div class="timeline-item">
-            <span class="timeline-kicker">UPLOAD</span>
-            <div><strong>전용 프로그램 등록</strong><span>팀별 산출물과 배포 링크를 등록해 심사 대상으로 전환합니다.</span></div>
-          </div>
-          <div class="timeline-item">
-            <span class="timeline-kicker">ROUND 02</span>
-            <div><strong>대면 MVP 빌딩</strong><span>살아남은 팀은 현장에서 실제 MVP를 만들고 투자 게임에 진입합니다.</span></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="benefits">
-      <div class="section-inner">
-        <p class="eyebrow">REWARD TABLE</p>
-        <h2>참가자는 상금과 투자 기회를, 스폰서는 우수 팀과 기술 트렌드를 얻습니다</h2>
-        <div class="reward-grid">
-          <article class="reward-card">
-            <h3>참가자 혜택</h3>
-            <ul>
-              <li>총 상금 및 후속 투자 기회</li>
-              <li>멘토링 및 전문가 코칭</li>
-              <li>클라우드 크레딧 지원</li>
-              <li>우수팀 후속 프로그램 연계</li>
-              <li>네트워킹과 커뮤니티 연결</li>
-            </ul>
-          </article>
-          <article class="reward-card sponsor">
-            <h3>스폰서 혜택</h3>
-            <ul>
-              <li>브랜드 노출과 인지도 강화</li>
-              <li>우수팀과 비즈니스 기회 발굴</li>
-              <li>AI 기술 트렌드 선제적 점검</li>
-              <li>채용 연계 및 인재 발굴</li>
-              <li>스폰서 전용 네트워킹</li>
-            </ul>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section cta" id="apply">
-      <div class="section-inner">
-        <div>
-          <h2>이번엔 아이디어를 투자받는 결과물로 만들어보세요</h2>
-          <p>마우드는 아이디어를 말로만 설명하는 프로그램이 아닙니다. 만들고, 등록하고, 검증받고, 투자받는 실행형 창업 서바이벌입니다.</p>
-        </div>
-        <a class="btn btn-primary" href="mailto:hello@mfitlab.com?subject=MAWD%20Challenge%20문의">참가 신청</a>
-      </div>
-    </section>
+    <article class="semantic-copy">
+      <h1>MAWD Challenge</h1>
+      <p>AI로 만들고, 투자로 검증받고, 상금과 기회를 가져가는 AI 빌드 챌린지입니다.</p>
+      <h2>창업 교육처럼 듣고 끝나는 행사가 아니라, 결과물이 남는 빌드 게임입니다</h2>
+      <p>MAWD는 참가자가 AI 도구로 PRD와 MVP를 만들고, 심사위원과 기업이 그 결과물에 가상머니로 투자하는 방식입니다.</p>
+      <h2>두 번의 라운드로 아이디어를 서비스에 가깝게 밀어붙입니다</h2>
+      <p>비대면 PRD 제작, 전용 프로그램 등록, 심사위원과 기업의 가상 투자, 대면 MVP 빌딩으로 이어집니다.</p>
+      <h2>참가자는 상금과 투자 기회를, 스폰서는 우수 팀과 기술 트렌드를 얻습니다</h2>
+      <p>참가자는 상금, 투자 기회, 멘토링, 클라우드 크레딧, 후속 프로그램 연계를 얻고 스폰서는 브랜드 노출과 우수팀 연결을 얻습니다.</p>
+      <h2>아이디어가 있다면, 이번엔 말보다 결과물로 증명해보세요</h2>
+      <p>MAWD Challenge는 만들고, 등록하고, 검증받고, 투자받는 실행형 AI 빌드 챌린지입니다.</p>
+    </article>
   </main>
 
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <strong class="pixel">MAWD CHALLENGE</strong>
-      <span>Build. Prove. Earn.</span>
-    </div>
-  </footer>
+  <script>
+    const revealTargets = document.querySelectorAll("[data-reveal]");
+
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.22 });
+
+      revealTargets.forEach((target) => observer.observe(target));
+    } else {
+      revealTargets.forEach((target) => target.classList.add("is-visible"));
+    }
+  </script>
 </body>
 </html>
-
-<!-- pages retry 20260703T140333Z -->

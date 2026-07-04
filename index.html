@@ -3,377 +3,80 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MAWD Challenge</title>
-  <meta name="description" content="AI로 만들고, 투자로 검증받고, 상금과 기회를 가져가는 AI 빌드 챌린지">
-  <meta property="og:title" content="MAWD Challenge">
-  <meta property="og:description" content="아이디어를 말로 끝내지 않고, PRD와 MVP 결과물로 증명하는 AI 빌드 챌린지">
-  <meta property="og:image" content="./assets/figma/proto-60-8/hero-1440x810.png">
+  <title>MAWD</title>
+  <meta name="description" content="MAWD website is being rebuilt.">
+  <meta name="robots" content="noindex">
   <style>
     :root {
       color-scheme: dark;
-      --frame-w: 1440;
-      --frame-h: 3683;
-      --green: #7cff00;
-      --purple: #9b4cff;
-      --paper: #f4f2ec;
-      --black: #050505;
+      --bg: #061728;
+      --fg: #f7fbff;
+      --muted: #8fb5c8;
+      --accent: #7dd7ff;
     }
 
     * {
       box-sizing: border-box;
     }
 
-    html {
-      scroll-behavior: smooth;
-      background: var(--black);
+    html,
+    body {
+      min-height: 100%;
     }
 
     body {
       margin: 0;
-      width: 100%;
-      min-width: 320px;
+      display: grid;
+      min-height: 100vh;
+      place-items: center;
       background:
-        radial-gradient(circle at 18% 8%, rgba(116, 32, 194, .28), transparent 32%),
-        #050505;
-      color: var(--paper);
+        linear-gradient(180deg, rgba(125, 215, 255, .12), transparent 34%),
+        linear-gradient(180deg, #08263d 0%, var(--bg) 48%, #020913 100%);
+      color: var(--fg);
       font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       letter-spacing: 0;
-      overflow-x: hidden;
     }
 
-    body::after {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: 10;
-      pointer-events: none;
-      background: repeating-linear-gradient(
-        to bottom,
-        rgba(255, 255, 255, .045) 0,
-        rgba(255, 255, 255, .045) 1px,
-        transparent 1px,
-        transparent 4px
-      );
-      mix-blend-mode: overlay;
-      opacity: .34;
+    main {
+      width: min(720px, calc(100vw - 48px));
+      text-align: center;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .skip-link {
-      position: fixed;
-      left: 16px;
-      top: 16px;
-      z-index: 30;
-      padding: 10px 14px;
-      background: var(--green);
-      color: var(--black);
+    .mark {
+      display: inline-grid;
+      width: 56px;
+      height: 56px;
+      margin-bottom: 28px;
+      place-items: center;
+      border: 2px solid rgba(125, 215, 255, .58);
+      background: rgba(125, 215, 255, .08);
+      box-shadow: 0 0 40px rgba(125, 215, 255, .16);
+      color: var(--accent);
+      font-size: 18px;
       font-weight: 900;
-      transform: translateY(-160%);
     }
 
-    .skip-link:focus {
-      transform: translateY(0);
+    h1 {
+      margin: 0;
+      font-size: clamp(38px, 8vw, 84px);
+      font-weight: 900;
+      line-height: .95;
     }
 
-    .desktop-frame {
-      position: relative;
-      width: min(100vw, 1440px);
-      height: min(3683px, calc(100vw * var(--frame-h) / var(--frame-w)));
-      min-height: 100vh;
-      margin: 0 auto;
-      background: #050505;
-      box-shadow: 0 0 80px rgba(0, 0, 0, .72);
-      animation: frameBoot .7s ease-out both;
-      overflow: hidden;
-    }
-
-    .desktop-frame::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      pointer-events: none;
-      background:
-        linear-gradient(90deg, rgba(124, 255, 0, .06), transparent 18%, transparent 82%, rgba(155, 76, 255, .08)),
-        repeating-linear-gradient(90deg, rgba(255, 255, 255, .03) 0 1px, transparent 1px 64px);
-      opacity: .28;
-      mix-blend-mode: screen;
-    }
-
-    .figma-layer {
-      position: absolute;
-      display: block;
-      max-width: none;
-      pointer-events: none;
-      user-select: none;
-    }
-
-    .body-bg {
-      z-index: 0;
-      inset: 0 auto auto 0;
-      width: 100%;
-      height: 100%;
-      object-fit: fill;
-    }
-
-    .hero-bg {
-      z-index: 1;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: calc(810 / var(--frame-w) * 100vw);
-      max-height: 810px;
-      object-fit: cover;
-    }
-
-    .left-sticker {
-      z-index: 2;
-      left: calc(69 / var(--frame-w) * 100%);
-      top: calc(201 / var(--frame-h) * 100%);
-      width: calc(218.94 / var(--frame-w) * 100%);
-      height: calc(341 / var(--frame-h) * 100%);
-      object-fit: cover;
-    }
-
-    .anchor {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    #top {
-      top: 0;
-    }
-
-    #intro {
-      top: 21.9%;
-    }
-
-    #program {
-      top: 43.2%;
-    }
-
-    #benefits {
-      top: 64.1%;
-    }
-
-    #apply {
-      top: 83.8%;
-    }
-
-    .hotspot {
-      position: absolute;
-      z-index: 4;
-      display: block;
-      border: 0;
-      border-radius: 2px;
-      color: transparent;
-      overflow: hidden;
-      outline: 0;
-    }
-
-    .hotspot:focus-visible {
-      outline: 3px solid var(--green);
-      outline-offset: 4px;
-      background: rgba(124, 255, 0, .1);
-    }
-
-    .hotspot:hover {
-      background: rgba(124, 255, 0, .1);
-      box-shadow: 0 0 32px rgba(124, 255, 0, .34);
-    }
-
-    .nav-home { left: 2.6%; top: .35%; width: 10.5%; height: 1.35%; }
-    .nav-intro { left: 31.6%; top: .35%; width: 6.5%; height: 1.15%; }
-    .nav-program { left: 43.5%; top: .35%; width: 6.4%; height: 1.15%; }
-    .nav-apply { left: 54.6%; top: .35%; width: 6.8%; height: 1.15%; }
-    .nav-benefits { left: 65.8%; top: .35%; width: 4.8%; height: 1.15%; }
-    .nav-faq { left: 75.6%; top: .35%; width: 4%; height: 1.15%; }
-    .nav-support { left: 85.2%; top: .35%; width: 6.5%; height: 1.15%; }
-    .nav-cta { left: 82.9%; top: .45%; width: 8.7%; height: 1.1%; }
-    .nav-sponsor { left: 92.6%; top: .45%; width: 6.8%; height: 1.1%; }
-
-    .hero-cta { left: 34.2%; top: 12.8%; width: 16.1%; height: 1.55%; }
-    .hero-sponsor { left: 51.3%; top: 12.8%; width: 15%; height: 1.55%; }
-    .apply-cta { left: 67.4%; top: 91.45%; width: 8.4%; height: 1.55%; }
-    .apply-sponsor { left: 77.2%; top: 91.45%; width: 9.5%; height: 1.55%; }
-
-    .apply-cta,
-    .hero-cta,
-    .nav-cta {
-      animation: ctaPulse 1.9s ease-in-out infinite;
-    }
-
-    .apply-cta:hover,
-    .hero-cta:hover,
-    .nav-cta:hover {
-      transform: translate(-2px, -2px);
-      background: rgba(124, 255, 0, .18);
-      box-shadow: 8px 8px 0 rgba(155, 76, 255, .46), 0 0 28px rgba(124, 255, 0, .5);
-    }
-
-    .section-hit {
-      position: absolute;
-      left: 8.9%;
-      width: 82.2%;
-      z-index: 2;
-      border: 1px solid transparent;
-      pointer-events: none;
-    }
-
-    .section-hit.is-visible {
-      animation: sectionWake .8s ease both;
-    }
-
-    .hit-intro { top: 24.6%; height: 17%; }
-    .hit-program { top: 45.6%; height: 16.4%; }
-    .hit-benefits { top: 66.6%; height: 13.7%; }
-    .hit-apply { top: 84.9%; height: 11.8%; }
-
-    .semantic-copy {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-      border: 0;
-    }
-
-    @keyframes frameBoot {
-      from {
-        opacity: 0;
-        filter: saturate(.9) contrast(.95);
-      }
-      to {
-        opacity: 1;
-        filter: saturate(1) contrast(1);
-      }
-    }
-
-    @keyframes ctaPulse {
-      0%, 100% {
-        box-shadow: 0 0 0 rgba(124, 255, 0, 0);
-      }
-      50% {
-        box-shadow: 0 0 24px rgba(124, 255, 0, .34);
-      }
-    }
-
-    @keyframes sectionWake {
-      from {
-        opacity: .6;
-        transform: translateY(18px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @media (min-width: 1441px) {
-      .desktop-frame {
-        width: 1440px;
-        height: 3683px;
-      }
-    }
-
-    @media (max-width: 900px) {
-      body {
-        overflow-x: auto;
-      }
-
-      .desktop-frame {
-        width: 1440px;
-        height: 3683px;
-        margin: 0;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *,
-      *::before,
-      *::after {
-        animation-duration: .001ms !important;
-        animation-iteration-count: 1 !important;
-        scroll-behavior: auto !important;
-        transition-duration: .001ms !important;
-      }
+    p {
+      margin: 18px auto 0;
+      max-width: 460px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.65;
     }
   </style>
 </head>
 <body>
-  <a class="skip-link" href="#intro">본문으로 이동</a>
-
-  <main class="desktop-frame" aria-label="MAWD Challenge desktop landing page">
-    <img class="figma-layer body-bg" src="./assets/figma/proto-60-8/body-bg.png" alt="">
-    <img class="figma-layer hero-bg" src="./assets/figma/proto-60-8/hero-1440x810.png" alt="">
-    <img class="figma-layer left-sticker" src="./assets/figma/proto-60-8/left-sticker.png" alt="">
-
-    <span class="anchor" id="top"></span>
-    <span class="anchor" id="intro"></span>
-    <span class="anchor" id="program"></span>
-    <span class="anchor" id="benefits"></span>
-    <span class="anchor" id="apply"></span>
-
-    <a class="hotspot nav-home" href="#top">MAWD Challenge home</a>
-    <a class="hotspot nav-intro" href="#intro">챌린지 소개</a>
-    <a class="hotspot nav-program" href="#program">프로그램</a>
-    <a class="hotspot nav-apply" href="#apply">참가 안내</a>
-    <a class="hotspot nav-benefits" href="#benefits">혜택</a>
-    <a class="hotspot nav-faq" href="#benefits">FAQ</a>
-    <a class="hotspot nav-support" href="#apply">지난 챌린지</a>
-    <a class="hotspot nav-cta" href="#apply">참가 신청</a>
-    <a class="hotspot nav-sponsor" href="mailto:hello@mfitlab.com?subject=MAWD%20Challenge%20스폰서%20문의">스폰서 문의</a>
-    <a class="hotspot hero-cta" href="#apply">참가 신청</a>
-    <a class="hotspot hero-sponsor" href="mailto:hello@mfitlab.com?subject=MAWD%20Challenge%20스폰서%20문의">스폰서 문의</a>
-    <a class="hotspot apply-cta" href="mailto:hello@mfitlab.com?subject=MAWD%20Challenge%20참가%20신청">참가 신청</a>
-    <a class="hotspot apply-sponsor" href="mailto:hello@mfitlab.com?subject=MAWD%20Challenge%20스폰서%20문의">스폰서 문의</a>
-
-    <div class="section-hit hit-intro" data-reveal></div>
-    <div class="section-hit hit-program" data-reveal></div>
-    <div class="section-hit hit-benefits" data-reveal></div>
-    <div class="section-hit hit-apply" data-reveal></div>
-
-    <article class="semantic-copy">
-      <h1>MAWD Challenge</h1>
-      <p>AI로 만들고, 투자로 검증받고, 상금과 기회를 가져가는 AI 빌드 챌린지입니다.</p>
-      <h2>창업 교육처럼 듣고 끝나는 행사가 아니라, 결과물이 남는 빌드 게임입니다</h2>
-      <p>MAWD는 참가자가 AI 도구로 PRD와 MVP를 만들고, 심사위원과 기업이 그 결과물에 가상머니로 투자하는 방식입니다.</p>
-      <h2>두 번의 라운드로 아이디어를 서비스에 가깝게 밀어붙입니다</h2>
-      <p>비대면 PRD 제작, 전용 프로그램 등록, 심사위원과 기업의 가상 투자, 대면 MVP 빌딩으로 이어집니다.</p>
-      <h2>참가자는 상금과 투자 기회를, 스폰서는 우수 팀과 기술 트렌드를 얻습니다</h2>
-      <p>참가자는 상금, 투자 기회, 멘토링, 클라우드 크레딧, 후속 프로그램 연계를 얻고 스폰서는 브랜드 노출과 우수팀 연결을 얻습니다.</p>
-      <h2>아이디어가 있다면, 이번엔 말보다 결과물로 증명해보세요</h2>
-      <p>MAWD Challenge는 만들고, 등록하고, 검증받고, 투자받는 실행형 AI 빌드 챌린지입니다.</p>
-    </article>
+  <main aria-label="MAWD rebuild notice">
+    <div class="mark" aria-hidden="true">M</div>
+    <h1>MAWD</h1>
+    <p>새 웹사이트를 준비하고 있어요. 기존 UI는 내리고, 새 디자인으로 다시 제작합니다.</p>
   </main>
-
-  <script>
-    const revealTargets = document.querySelectorAll("[data-reveal]");
-
-    if ("IntersectionObserver" in window) {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.22 });
-
-      revealTargets.forEach((target) => observer.observe(target));
-    } else {
-      revealTargets.forEach((target) => target.classList.add("is-visible"));
-    }
-  </script>
 </body>
 </html>

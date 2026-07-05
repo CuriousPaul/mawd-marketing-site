@@ -1,9 +1,21 @@
-# MAWD Marketing Site
+# MAWD Challenge Site
 
-MAWD Challenge marketing assets and static landing page.
+MAWD Challenge static website and campaign assets.
+
+The product direction is now anchored on the final PRD: MAWD is an AI building survival program where participants turn ideas into PRDs, business plans, MVPs, agents, automation services, and portfolio-ready outcomes. The website should act first as a hackathon application and submission gateway, not just a mood-based marketing page.
+
+## Direction
+
+- Primary job: collect hackathon/program applications.
+- Secondary job: explain the MAWD challenge flow clearly enough for participants, judges, and sponsors to decide whether to join.
+- Core CTA: `마우드 참가 신청하기`.
+- Core story: `아이디어를 실제 프로젝트로 바꾸는 AI 빌딩 서바이벌`.
+- Core proof: participants leave with PRD, business plan, presentation material, MVP or agent output, deployment links, review feedback, and portfolio/LinkedIn-ready material.
 
 ## Contents
 
+- `docs/prd/mawd-challenge-prd-final.md` - readable final PRD and direction source
+- `docs/prd/mawd-challenge-prd-final.docx` - original final PRD document
 - `mawd-landing.html` - static landing page
 - `mawd-cardnews.html` - card news source page
 - `cards-png/` - exported card news images

@@ -1,6 +1,10 @@
 # MAWD Challenge Design Documentation v2
 
-Source of truth: Figma frame `MAWD Editable Desktop Website / v2`
+Design source: Figma frame `MAWD Editable Desktop Website / v2`
+
+Product and copy source: `docs/prd/mawd-challenge-prd-final.md`
+
+The site direction is now application-first. Visual design can keep the MAWD pixel/arcade world, but the page structure must prioritize hackathon participation, submission, evaluation, and sponsor value.
 
 ## Core Rule
 
@@ -78,4 +82,6 @@ Decorative textures, stickers, and atmospheric art may remain raster assets, but
 - Build production HTML from the editable Figma v2 frame, not from a full-page screenshot.
 - Keep decorative raster layers separate from text.
 - CTA/hotspot links should map to live anchors or explicit external actions.
+- Keep the primary CTA aligned with the PRD: `마우드 참가 신청하기`.
+- Treat the application flow as the first product workflow: learn the challenge, check fit, apply, submit materials, receive evaluation, and progress to the offline build round.
 - Verify desktop at 1440px first. Mobile is intentionally deferred.
